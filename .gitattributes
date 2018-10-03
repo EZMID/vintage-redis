@@ -1,0 +1,25 @@
+# Default is auto detect
+* text=auto
+
+# Ensure all to be LF
+*.php           eol=lf
+*.js            eol=lf
+*.html          eol=lf
+*.xml           eol=lf
+*.css           eol=lf
+*.scss          eol=lf
+*.yaml          eol=lf
+*.yml           eol=lf
+*.json          eol=lf
+*.lock          eol=lf
+*.dist          eol=lf
+*.env           eol=lf
+*.md            eol=lf
+*.log           eol=lf
+*.conf          eol=lf
+*.sh            eol=lf
+*.ini           eol=lf
+Makefile        eol=lf
+Dockerfile      eol=lf
+.gitattributes  eol=lf
+.gitignore      eol=lf
