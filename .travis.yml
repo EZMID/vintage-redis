@@ -1,4 +1,4 @@
-- addons:
+addons:
   apt:
     packages:
     - cmake
