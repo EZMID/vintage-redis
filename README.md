@@ -1,6 +1,8 @@
-# Vintage Docker Redis
+# Vintage Redis
 
-This is a simple REDIS server build on Alpine Linux.
+[![Build Status](https://travis-ci.org/ezmid/vintage-redis.svg?branch=master)](https://travis-ci.org/ezmid/vintage-redis)
+
+This is a simple docker image with REDIS server build on top of Alpine Linux.
 
 ## Installation
 
