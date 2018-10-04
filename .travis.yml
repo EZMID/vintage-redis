@@ -1,6 +1,9 @@
 # Quick way around
 language: c
 
+# Goos installation requires this
+sudo: required
+
 # Install make and curl
 addons:
   apt:
@@ -10,7 +13,7 @@ addons:
     
 # Install Goos for the image build validation step
 install:
-- sudo curl -fsSL https://goss.rocks/install | sh
+- curl -fsSL https://goss.rocks/install | sh
 
 # Simple 2 step process:
 # 1. Build the image
