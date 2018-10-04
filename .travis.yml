@@ -10,9 +10,9 @@ addons:
     
 # Install Goos for the image build validation step
 install:
-- "sudo curl -L https://github.com/aelsabbahy/goss/releases/download/_VERSION_/goss-linux-amd64 -o /usr/local/bin/goss"
+- "sudo curl -L https://github.com/aelsabbahy/goss/releases/download/v0.3.6/goss-linux-amd64 -o /usr/local/bin/goss"
 - "sudo chmod +rx /usr/local/bin/goss"
-- "sudo curl -L https://raw.githubusercontent.com/aelsabbahy/goss/_VERSION_/extras/dgoss/dgoss -o /usr/local/bin/dgoss"
+- "sudo curl -L https://raw.githubusercontent.com/aelsabbahy/goss/v0.3.6/extras/dgoss/dgoss -o /usr/local/bin/dgoss"
 - "sudo chmod +rx /usr/local/bin/dgoss"
 
 # Simple 2 step process:
