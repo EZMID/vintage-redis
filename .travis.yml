@@ -10,7 +10,7 @@ addons:
     
 # Install Goos for the image build validation step
 install:
-- curl -fsSL https://goss.rocks/install | sh
+- sudo curl -fsSL https://goss.rocks/install | sh
 
 # Simple 2 step process:
 # 1. Build the image
