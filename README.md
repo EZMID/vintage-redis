@@ -1,6 +1,6 @@
 # Vintage Redis
 
-[![Build Status](https://travis-ci.org/ezmid/vintage-redis.svg?branch=master)](https://travis-ci.org/ezmid/vintage-redis)
+[![Build Status](https://travis-ci.org/ezmid/vintage-redis.svg?branch=master)](https://travis-ci.org/ezmid/vintage-redis) ![Docker Hub Status](https://img.shields.io/docker/build/ezmid/vintage-redis.svg) ![Image Pulls](https://img.shields.io/docker/pulls/ezmid/vintage-redis.svg) ![Image Stars](https://img.shields.io/docker/stars/ezmid/vintage-redis.svg)
 
 This is a simple docker image with REDIS server build on top of Alpine Linux.
 
