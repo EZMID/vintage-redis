@@ -1,0 +1,8 @@
+- addons:
+  apt:
+    packages:
+    - cmake
+    - time
+script:
+- bundle exec make build
+- bundle exec make test
