@@ -1,9 +1,19 @@
+# Quick way around
 language: c
+
+# Install make
 addons:
   apt:
     packages:
     - cmake
-    - time
+    
+# Install Goos for the image build validation step
+install:
+- curl -fsSL https://goss.rocks/install | sh
+
+# Simple 2 step process:
+# 1. Build the image
+# 2. Run the image and test it using Goos
 script:
 - make build
 - make test
