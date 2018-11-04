@@ -29,8 +29,8 @@ ECHO=$(shell which echo)
 # Specific project variables
 ################################################################################
 REGISTRY=hub.docker.com
-NAMESPACE=vintage
-IMAGE=redis
+NAMESPACE=ezmid
+IMAGE=vintage-redis
 TAG=latest
 
 ################################################################################
