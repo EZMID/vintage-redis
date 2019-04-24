@@ -60,7 +60,7 @@ default:
 .PHONY: build
 .ONESHELL: build
 build:
-	docker build . -t $(REGISTRY)/$(NAMESPACE)/$(IMAGE):$(TAG)
+	docker build . -t $(REGISTRY)/$(NAMESPACE)/$(IMAGE):$(TAG) --no-cache
 
 ################################################################################
 # Push the image to registry
