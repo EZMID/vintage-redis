@@ -2,7 +2,7 @@ package:
   redis:
     installed: true
     versions:
-    - 5.0.5-r0
+    - 4.0.14-r0
 user:
   redis:
     exists: true

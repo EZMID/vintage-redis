@@ -4,8 +4,10 @@
 .ONESHELL:
 
 ################################################################################
-# Colors
 ################################################################################
+# Variable definitions
+################################################################################
+
 # Are we running in an interactive shell? If so then we can use codes for
 # a colored output
 ifeq ("$(shell [ -t 0 ] && echo yes)","yes")
@@ -22,16 +24,28 @@ FORMAT_GREEN=
 FORMAT_RESET=
 endif
 
+# Platform fixes
+ECHO=$(shell which echo)
+OSECHOFLAG=-e
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+	ECHO=echo
+	OSECHOFLAG=
+	FORMAT_BOLD=
+endif
+
 # Echo binary
 ECHO=$(shell which echo)
 
 ################################################################################
 # Specific project variables
 ################################################################################
-REGISTRY=hub.docker.com
+DOCKERFILE=4.0.Dockerfile
+REGISTRY=
 NAMESPACE=ezmid
-IMAGE=vintage-redis
-TAG=latest
+IMAGE=redis
+TAG=4.0
+VERSION=latest
 
 ################################################################################
 # Manual
@@ -59,19 +73,65 @@ default:
 # Build/rebuild the image
 .PHONY: build
 .ONESHELL: build
-build:
-	docker build . -t $(REGISTRY)/$(NAMESPACE)/$(IMAGE):$(TAG) --no-cache
+build: build/all
+
+# Build/rebuild all images
+.PHONY: build/all
+build/all:
+	docker build . -t $(NAMESPACE)/$(IMAGE):4.0-$(VERSION) -f 4.0.Dockerfile --no-cache
+	docker build . -t $(NAMESPACE)/$(IMAGE):5.0-$(VERSION) -f 5.0.Dockerfile --no-cache
+
+# Redis 4.0
+.PHONY: build/4.0
+build/4.0:
+	docker build . -t $(NAMESPACE)/$(IMAGE):4.0-$(VERSION) -f 4.0.Dockerfile --no-cache
+
+# Redis 5.0
+.PHONY: build/5.0
+build/5.0:
+	docker build . -t $(NAMESPACE)/$(IMAGE):5.0-$(VERSION) -f 5.0.Dockerfile --no-cache
+
 
 ################################################################################
 # Push the image to registry
 .PHONY: push
-.ONESHELL: push
-push:
-	docker push $(REGISTRY)/$(NAMESPACE)/$(IMAGE):$(TAG)
+push/: push/all
+
+.PHONY: push/all
+push/all:
+	docker push $(NAMESPACE)/$(IMAGE):4.0-$(VERSION)
+	docker push $(NAMESPACE)/$(IMAGE):5.0-$(VERSION)
+
+.PHONY: push/4.0
+push/4.0:
+	docker push $(NAMESPACE)/$(IMAGE):4.0-$(VERSION)
+
+.PHONY: push/5.0
+push/5.0:
+	docker push $(NAMESPACE)/$(IMAGE):5.0-$(VERSION)
 
 ################################################################################
-# Run a test
+# Run all tests
 .PHONY: test
 .ONESHELL: test
-test:
-	@dgoss run $(REGISTRY)/$(NAMESPACE)/$(IMAGE):$(TAG)
+test: test/all
+
+.PHONY: test/all
+test/all:
+	make test/4.0
+	make test/5.0
+
+# Test Redis 4.0 image
+.PHONY: test/4.0
+test/4.0:
+	rm -f goss.yaml
+	cp 4.0.goss.yaml goss.yaml
+	dgoss run $(NAMESPACE)/$(IMAGE):4.0-$(VERSION)
+
+# Test Redis 5.0 image
+.PHONY: test/5.0
+test/5.0:
+	rm -f goss.yaml
+	cp 5.0.goss.yaml goss.yaml
+	dgoss run $(NAMESPACE)/$(IMAGE):5.0-$(VERSION)
+	

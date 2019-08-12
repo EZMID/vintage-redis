@@ -1,11 +1,11 @@
-FROM alpine:3.9
+FROM alpine:3.10
 
-MAINTAINER Filip Cieker <filip.cieker@ezmid.com>
 LABEL maintainer="Filip Cieker filip.cieker@ezmid.com"
 
 ################################################################################
 # Layer 1 - Add the Redis package
-RUN apk --no-cache add \
+RUN apk --no-cache --update upgrade && \
+    apk add \
     redis
 
 ################################################################################
